@@ -1,2 +1,2 @@
-# citz-imb-publish-to-ghcr
-Git hub Action template to create and publish to github container registry
+# citz-imb-build-and-register
+Git hub Action template to build and publish to github container registry
