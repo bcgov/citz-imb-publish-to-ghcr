@@ -1,0 +1,28 @@
+name: "Publish to GitHub Container Registry"
+description: "build a container image and push it to Github Container Registry"
+
+inputs:
+  registry_username:
+    description: "Username for image registry"
+    required: true
+  registry_password:
+    description: "Password for image registry"
+    required: true
+  image_name:
+    description: "Name of the image to push"
+    required: true
+  tag:
+    description: "How to tag the image.  Default: latest"
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Set the tag
+      shell: bash
+      run: |
+        if [ -z "@{{inputs.tag}}" ]
+        then
+          echo "final_tag=latest" >> $GITHUB_ENV
+        else
+          echo "final_tag=${{inputs.tag}}" >> $GITHUB_ENV
+        fi
